@@ -9,7 +9,7 @@ from mpl_toolkits.mplot3d.axes3d import *
 from matplotlib import cm
 import scipy as sp
 from scipy.interpolate import griddata
-from flask import Flask, json
+from flask import Flask, json, request, jsonify
 from flask_restful import Resource, Api, reqparse
 import pandas as pd
 import ast
@@ -109,16 +109,17 @@ class Data(Resource):
         return df
     
     def post(self):
-        parser = reqparse.RequestParser()
-        parser.add_argument('C', required = True)
-        parser.add_argument('theta', required = True)
-        parser.add_argument('Tmax', required = True)
-        parser.add_argument('Wmax', required = True)
-        args = parser.parse_args()
-        C = int(args['C'])
-        theta = int(args['theta'])
-        Tmax = int(args['Tmax'])
-        Wmax = float(args['Wmax'])
+        #parser = reqparse.RequestParser()
+        #parser.add_argument('C', required = True)
+        #parser.add_argument('theta', required = True)
+        #parser.add_argument('Tmax', required = True)
+        #parser.add_argument('Wmax', required = True)
+        #args = parser.parse_args()
+        content = request.get_json()
+        C = content['C']
+        theta = content['theta']
+        Tmax = content['Tmax']
+        Wmax = content['Wmax']
 
         df = self.compute_and_return_DF(C,theta,Tmax,Wmax)
         df.to_csv('data.csv',index=False)
