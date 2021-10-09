@@ -1,14 +1,19 @@
 <template>
-  <Form />
+  <div>
+    <Form />
+  </div>
 </template>
 
 <script>
 import Form from './components/Form.vue'
+//import Graph from './components/Graph.vue'
+//import { Plotly } from 'vue-plotly'
 
 export default {
   name: 'App',
   components: {
-    Form
+    Form,
+    //Graph,
   },
 }
 </script>

@@ -1,4 +1,11 @@
-import { createApp } from 'vue'
+import { createApp,h } from 'vue'
 import App from './App.vue'
 
-createApp(App).mount('#app')
+//import { Plotly } from "@/index.js";
+//Vue.component("plotly", Plotly);
+const app  = createApp({
+    render: ()=>h(App)
+});
+//app.component("plotly",Plotly)
+
+app.mount("#app")
