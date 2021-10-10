@@ -1,32 +1,29 @@
 <template>
-    <div class="form-stype-2">
-            <div class="form-style-2-heading">Data Input</div>
-            <form v-on:submit.prevent="submitForm">
-                <label for="C">
-                    <span>C 
-                        <span class="required">*</span>
-                    </span>
-                </label>
-                    <input type="number" class="input-field" name="C" v-model="form.C">
-                <div class="form-group">
-                    <label for="theta">theta</label>
-                    <input type="number" class="form-control" id="theta" placeholder="theta" v-model="form.theta">
-                </div>
-                <div class="form-group">
-                    <label for="Tmax">Tmax</label>
-                    <input type="number" class="form-control" id="Tmax" placeholder="Tmax" v-model="form.Tmax">
-                </div>
-                <div class="form-group">
-                    <label for="Wmax">Wmax</label>
-                    <input type="number" step=0.01 class="form-control" id="Wmax" placeholder="Wmax" v-model="form.Wmax">
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary">Submit</button>
-                </div>
-            </form>
-            <div>
-                <Graph :data="data" :layout="layout" />
-            </div>
+    <div class="total-view">
+        <form class="form-style-2" v-on:submit.prevent="submitForm">
+            <h2 class="form-style-2-heading">Data Input</h2>
+            <label>
+                <span>C</span>
+                <input type="number" class="input-field" name="C" v-model="form.C" required>
+            </label>
+            <label>
+                <span>theta</span>
+                <input type="number" class="input-field" name="theta" v-model="form.theta" required>
+            </label>
+            <label>
+                <span>Tmax</span>
+                <input type="number" class="input-field" name="Tmax" v-model="form.Tmax" required>
+            </label>
+            <label>
+                <span>Wmax</span>
+                <input type="number" step=0.01 class="input-field" name="Wmax" v-model="form.Wmax" required>
+            </label>
+            <button class="btn btn-primary">Show Graph</button>
+        </form>
+        <div class="form-style-3">
+            <h2 class="form-style-2-heading">Output Graph</h2>
+            <Graph :data="data" :layout="layout" />
+        </div>
     </div>
 </template>
 
@@ -48,8 +45,19 @@ export default {
                 Tmax: '40',
                 Wmax: '0.5',
             },
-            data: [],
-            layout: {}
+            data: [
+                {
+                    x: [],
+                    y: [],
+                    z: [],
+                    type: 'surface'
+                }
+            ],
+            layout: {
+                width: 800,
+                height: 600,
+                showscale: false
+            }
         }
     },
     methods:{
@@ -77,18 +85,30 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.total-view{
+    display: flex;
+}
 .form-style-2{
 	max-width: 500px;
 	padding: 20px 12px 10px 20px;
 	font: 13px Arial, Helvetica, sans-serif;
+    justify-content: space-between;
+}
+.form-style-3{
+	padding: 20px 12px 10px 20px;
+	font: 13px Arial, Helvetica, sans-serif;
+    justify-content: space-between;
+}
+.input-field{
+    max-width: 500px;
 }
 .form-style-2-heading{
 	font-weight: bold;
 	font-style: italic;
 	border-bottom: 2px solid #ddd;
 	margin-bottom: 20px;
-	font-size: 15px;
+	font-size: 20px;
 	padding-bottom: 3px;
 }
 .form-style-2 label{

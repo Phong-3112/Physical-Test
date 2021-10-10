@@ -1,9 +1,11 @@
 <template>
-        <Plotly class="graph"
-            :data="data"
-            :layout="layout"
-            :display-mode-bar="false"
-        >Graph</Plotly>
+  <div class="graph">
+    <Plotly
+      :data="data"
+      :layout="layout"
+      :display-mode-bar="false"
+    ></Plotly>
+  </div>
 </template>
 
 <script>
@@ -24,13 +26,12 @@ export default {
 
 <style>
 .graph {
-  height: 800px;
-  max-width: 500px;
+  height: 670px;
+  max-width: 800px;
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
   border: 1px solid steelblue;
-  padding: 30px;
   border-radius: 5px;
 }
 </style>
