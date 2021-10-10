@@ -15,7 +15,6 @@ from flask_cors import CORS, cross_origin
 import pandas as pd
 import ast
 
-#companies = [{"id": 1, "name": "Company One"}, {"id": 2, "name": "Company Two"}]
  
 app = Flask(__name__)
 cors = CORS(app)
@@ -119,9 +118,7 @@ class Data(Resource):
         X, Y = np.meshgrid(xi, yi)
         points = np.column_stack((x,y))
         Z = griddata(points, z, (X, Y), method='linear')
-        #print(xi)
-        #print(yi)
-        df2 = pd.DataFrame(Z,index=xi,columns=yi)
+        #df2 = pd.DataFrame(Z,index=xi,columns=yi)
         return df,xi,yi,Z
     
     def post(self):
@@ -136,16 +133,9 @@ class Data(Resource):
         x_json = json.dumps(X.tolist())
         y_json = json.dumps(Y.tolist())
         z_json = json.dumps(Z.tolist())
-        #print(z_json)
-        #df2.to_csv('data2.csv',index=False)
         return {'x_data':x_json,'y_data':y_json,'z_data':z_json}, 200
-        #return jsonify(x_data=x_json,y_data=y_json,z_data=z_json),200
 
-#@api.route('/companies', methods=['POST'])
-#def post_companies():
-#  return json.dumps({"success":True}), 201
 api.add_resource(Data, '/data')  # add endpoints
-
 
 if __name__ == '__main__':
     app.run() 
