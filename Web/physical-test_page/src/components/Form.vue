@@ -3,7 +3,7 @@
         <form class="form-style-2" v-on:submit.prevent="submitForm">
             <h2 class="form-style-2-heading">Data Input</h2>
             <label>
-                <span>C</span>
+                <span>Percent Clay(%)</span>
                 <input type="number" class="input-field" name="C" v-model="form.C" required>
             </label>
             <label>
@@ -11,11 +11,11 @@
                 <input type="number" class="input-field" name="theta" v-model="form.theta" required>
             </label>
             <label>
-                <span>Tmax</span>
+                <span>Tmax (oC)</span>
                 <input type="number" class="input-field" name="Tmax" v-model="form.Tmax" required>
             </label>
             <label>
-                <span>Wmax</span>
+                <span>Wmax (m3/m3)</span>
                 <input type="number" step=0.01 class="input-field" name="Wmax" v-model="form.Wmax" required>
             </label>
             <button class="btn btn-primary">Show Graph</button>
@@ -50,13 +50,30 @@ export default {
                     x: [],
                     y: [],
                     z: [],
-                    type: 'surface'
+                    type: 'surface',
                 }
             ],
             layout: {
                 width: 800,
                 height: 600,
-                showscale: false
+                scene: {
+                    xaxis: {
+                        title: 'W (m3/m3)'
+                    },
+                    yaxis: {
+                        title: 'T (oC)'
+                    },
+                    zaxis: {
+                        title: 'Soil TB (K)'
+                    },
+                },
+                margin: {
+                    l: 10,
+                    r: 10,
+                    b: 20,
+                    t: 20,
+                    pad: 4
+                },
             }
         }
     },
@@ -70,7 +87,7 @@ export default {
                     var x_data = JSON.parse(res.data.x_data)
                     var y_data = JSON.parse(res.data.y_data)
                     var z_data = JSON.parse(res.data.z_data)
-                    var graphdata = {x: x_data, y: y_data, z: z_data, type: 'surface'}
+                    var graphdata = {x: x_data, y: y_data, z: z_data, type: 'surface', showscale: false}
                     //console.log(graphdata)
                     this.data.push(graphdata)
                 })

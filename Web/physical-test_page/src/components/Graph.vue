@@ -1,9 +1,9 @@
 <template>
-  <div class="graph">
+  <div class="output">
     <Plotly
       :data="data"
       :layout="layout"
-      :display-mode-bar="false"
+      :display-mode-bar="true"
     ></Plotly>
   </div>
 </template>
@@ -24,8 +24,8 @@ export default {
 }
 </script>
 
-<style>
-.graph {
+<style scoped>
+.output {
   height: 670px;
   max-width: 800px;
   margin: 30px auto;
