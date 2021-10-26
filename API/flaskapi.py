@@ -1,19 +1,9 @@
 import numpy as np
-from numpy.lib.shape_base import column_stack
 import pandas as pd
-import matplotlib as mpl
-from pandas.core.frame import DataFrame
-mpl.use('tkagg')
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d.axes3d import *
-from matplotlib import cm
-import scipy as sp
 from scipy.interpolate import griddata
-from flask import Flask, json, request, jsonify
-from flask_restful import Resource, Api, reqparse
-from flask_cors import CORS, cross_origin
-import pandas as pd
-import ast
+from flask import Flask, json, request
+from flask_restful import Resource, Api
+from flask_cors import CORS
 
  
 app = Flask(__name__)
